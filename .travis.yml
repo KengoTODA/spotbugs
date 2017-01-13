@@ -20,6 +20,7 @@ install:
 
 script:
   - jdk_switcher use $JDK_FOR_TEST
+  - ./gradlew -v # dump the version of Java and Gradle for debugging
   - ./gradlew build smoketest -S --no-daemon
 
 before_cache:
