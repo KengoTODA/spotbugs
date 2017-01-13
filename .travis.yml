@@ -1,5 +1,5 @@
 language: java
-sudo: false
+sudo: required # jdk_switcher needs to use sudo
 
 env:
   matrix:
@@ -17,8 +17,10 @@ install:
   - if [[ ! -e deps/eclipse.tar.gz ]]; then wget http://www.eclipse.org/downloads/download.php?file=/eclipse/downloads/drops/R-3.6.2-201102101200/eclipse-SDK-3.6.2-linux-gtk-x86_64.tar.gz -O deps/eclipse.tar.gz; fi
   - tar xzvf deps/eclipse.tar.gz eclipse
   - echo eclipsePlugin.dir=$(pwd)/eclipse/plugins > eclipsePlugin/local.properties
+  - if [[ ! -e deps/jdk_switcher.sh ]]; then wget https://raw.githubusercontent.com/michaelklishin/jdk_switcher/e04d5c4961685b083caba15e2a23945a41476ac4/jdk_switcher.sh -O deps/jdk_switcher.sh; chmod +x deps/jdk_switcher.sh; fi
 
 script:
+  - . deps/jdk_switcher.sh
   - jdk_switcher use $JDK_FOR_TEST
   - ./gradlew -v # dump the version of Java and Gradle for debugging
   - ./gradlew build smoketest -S --no-daemon
