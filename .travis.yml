@@ -2,15 +2,18 @@ language: java
 sudo: false
 dist: trusty
 
-env:
-  matrix:
-    - JDK_FOR_TEST=oraclejdk9 GRADLE_OPTS='--add-opens java.base/java.lang=ALL-UNNAMED'
-
-addons:
-  apt:
-    packages:
-      - oracle-java9-installer
-      - oracle-java9-set-default
+matrix:
+  include:
+    - env: GRADLE_OPTS='--add-opens java.base/java.lang=ALL-UNNAMED'
+      addons:
+        apt:
+          packages:
+            - oracle-java9-installer
+            - oracle-java9-set-default
+    - addons:
+        apt:
+          packages:
+            - oracle-java8-installer
 
 install:
   - mkdir -p deps
