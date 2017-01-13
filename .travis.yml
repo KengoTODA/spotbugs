@@ -4,13 +4,11 @@ dist: trusty
 
 env:
   matrix:
-    - JDK_FOR_TEST=oraclejdk8
     - JDK_FOR_TEST=oraclejdk9 GRADLE_OPTS='--add-opens java.base/java.lang=ALL-UNNAMED'
 
 addons:
   apt:
     packages:
-     - oracle-java8-installer
      - oracle-java9-installer
 
 install:
