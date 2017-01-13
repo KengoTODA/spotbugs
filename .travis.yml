@@ -1,5 +1,6 @@
 language: java
 sudo: required # jdk_switcher needs to use sudo
+dist: trusty
 
 env:
   matrix:
