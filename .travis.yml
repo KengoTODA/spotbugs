@@ -9,7 +9,8 @@ env:
 addons:
   apt:
     packages:
-     - oracle-java9-installer
+      - oracle-java9-installer
+      - oracle-java9-set-default
 
 install:
   - mkdir -p deps
