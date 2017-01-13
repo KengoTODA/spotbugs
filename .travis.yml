@@ -1,5 +1,5 @@
 language: java
-sudo: required # jdk_switcher needs to use sudo
+sudo: false
 dist: trusty
 
 env:
@@ -19,7 +19,6 @@ install:
   - echo eclipsePlugin.dir=$(pwd)/eclipse/plugins > eclipsePlugin/local.properties
 
 script:
-  - jdk_switcher use $JDK_FOR_TEST
   - ./gradlew -v # dump the version of Java and Gradle for debugging
   - ./gradlew build smoketest -S --no-daemon
 
