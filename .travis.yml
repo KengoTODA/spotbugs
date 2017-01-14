@@ -25,7 +25,7 @@ install:
 
 script:
   - ./gradlew -v # dump the version of Java and Gradle for debugging
-  - ./gradlew build smoketest -S --no-daemon
+  - ./gradlew build smoketest -S --no-daemon --debug
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
