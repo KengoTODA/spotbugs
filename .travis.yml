@@ -30,6 +30,7 @@ install:
   - echo org.gradle.java.home=$(jdk_switcher home $JDK_VERSION) > gradle.properties
   - echo org.gradle.daemon=false >> gradle.properties
   - echo org.gradle.jvmargs=$JVM_ARGS >> gradle.properties
+  - cat gradle.properties
   - ./gradlew -v # dump the version of Java and Gradle for debugging
 
 script:
