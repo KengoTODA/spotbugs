@@ -1,20 +1,17 @@
 language: java
-sudo: required
+sudo: false
 dist: trusty
 
 matrix:
   include:
     - env:
         - GRADLE_OPTS='--add-opens java.base/java.lang=ALL-UNNAMED'
-        - JDK_VERSION=oraclejdk9
       addons:
         apt:
           packages:
             - oracle-java9-installer
             - oracle-java9-set-default
-    - env:
-        - JDK_VERSION=oraclejdk8
-      addons:
+    - addons:
         apt:
           packages:
             - oracle-java8-installer
@@ -27,7 +24,6 @@ install:
   - echo eclipsePlugin.dir=$(pwd)/eclipse/plugins > eclipsePlugin/local.properties
 
 script:
-  - jdk_switcher use $JDK_VERSION
   - ./gradlew -v # dump the version of Java and Gradle for debugging
   - ./gradlew build smoketest -S --no-daemon
 
