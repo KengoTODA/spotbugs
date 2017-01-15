@@ -1,5 +1,8 @@
 language: java
-sudo: false
+# Actually what we need is not sudo but full VM environment to build,
+# because eclipse needs much memory so container-based environment (4GiB) is not enough.
+# https://docs.travis-ci.com/user/ci-environment/#Virtualization-environments
+sudo: required
 dist: trusty
 
 matrix:
