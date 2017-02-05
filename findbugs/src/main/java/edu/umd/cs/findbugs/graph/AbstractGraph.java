@@ -22,6 +22,9 @@ package edu.umd.cs.findbugs.graph;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
+
+import javax.annotation.Nonnull;
 
 /**
  * A simple Graph implementation where the vertex objects store a list of
@@ -137,6 +140,14 @@ implements Graph<EdgeType, VertexType> {
         this.edgeList = new ArrayList<EdgeType>();
         this.maxVertexLabel = 0;
         this.maxEdgeLabel = 0;
+    }
+
+    protected AbstractGraph(@Nonnull AbstractGraph<EdgeType, VertexType> source) {
+        Objects.requireNonNull(source);
+        this.vertexList = new ArrayList<>(source.vertexList);
+        this.edgeList = new ArrayList<>(source.edgeList);
+        this.maxVertexLabel = source.maxVertexLabel;
+        this.maxEdgeLabel = source.maxEdgeLabel;
     }
 
     @Override

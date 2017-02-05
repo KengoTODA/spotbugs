@@ -68,6 +68,7 @@ import org.apache.bcel.generic.Type;
 
 import edu.umd.cs.findbugs.ba.BasicBlock;
 import edu.umd.cs.findbugs.ba.CFG;
+import edu.umd.cs.findbugs.ba.CFGIgnoringAssert;
 import edu.umd.cs.findbugs.ba.ClassContext;
 import edu.umd.cs.findbugs.ba.DataflowAnalysisException;
 import edu.umd.cs.findbugs.ba.Edge;
@@ -653,9 +654,9 @@ public class ValueRangeAnalysisFactory implements IMethodAnalysisEngine<ValueRan
         if (xMethod.isNative() || xMethod.isSynthetic() || xMethod.isAbstract()) {
             return null;
         }
-        CFG cfg;
+        CFGIgnoringAssert cfg;
         try {
-            cfg = analysisCache.getMethodAnalysis(CFG.class, descriptor);
+            cfg = analysisCache.getMethodAnalysis(CFGIgnoringAssert.class, descriptor);
         } catch (MethodUnprofitableException e) {
             return null;
         }

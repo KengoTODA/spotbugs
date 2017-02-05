@@ -50,7 +50,7 @@ public class CFGFactory extends AnalysisFactory<CFG> {
      */
     @Override
     public CFG analyze(IAnalysisCache analysisCache, MethodDescriptor descriptor) throws CheckedAnalysisException {
-        return delegate.analyze(analysisCache, descriptor, false);
+        return delegate.analyze(analysisCache, descriptor, true);
     }
 
     /*

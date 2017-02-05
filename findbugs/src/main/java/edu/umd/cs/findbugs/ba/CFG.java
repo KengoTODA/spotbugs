@@ -19,6 +19,7 @@
 
 package edu.umd.cs.findbugs.ba;
 
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.Iterator;
@@ -26,6 +27,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.TreeSet;
+
+import javax.annotation.Nonnull;
 
 import org.apache.bcel.generic.ATHROW;
 import org.apache.bcel.generic.InstructionHandle;
@@ -171,6 +174,16 @@ public class CFG extends AbstractGraph<Edge, BasicBlock> implements Debug {
      * nodes).
      */
     public CFG() {
+    }
+
+    public CFG(@Nonnull CFG source) {
+        super(source);
+        this.entry = source.entry;
+        this.exit = source.exit;
+        this.flags = source.flags;
+        this.methodGen = source.methodGen;
+        this.methodName = source.methodName;
+        this.removedEdgeList = new ArrayList<>(source.removedEdgeList);
     }
 
     /**
