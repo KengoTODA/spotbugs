@@ -3,7 +3,7 @@
 <schema targetNamespace="edu.umd.cs.findbugs.plugin.eclipse" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="edu.umd.cs.findbugs.plugin.eclipse" id="findbugsPlugins" name="Custom SpotBugs plugins"/>
+         <meta.schema plugin="com.github.spotbugs.plugin.eclipse" id="findbugsPlugins" name="Custom SpotBugs plugins"/>
       </appInfo>
       <documentation>
          Extension point can be used to contribute custom plugins for the SpotBugs engine.

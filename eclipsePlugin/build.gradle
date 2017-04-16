@@ -135,9 +135,9 @@ task pluginDailyJar(type:Copy, dependsOn:pluginJar) {
 }
 
 def siteFilterTokens = [
-  'PLUGIN_ID':'edu.umd.cs.findbugs.plugin.eclipse',
+  'PLUGIN_ID':'com.github.spotbugs.plugin.eclipse',
   'PLUGIN_VERSION':"${project.version}".toString(),
-  'FEATURE_ID':'edu.umd.cs.findbugs.plugin.eclipse',
+  'FEATURE_ID':'com.github.spotbugs.plugin.eclipse',
   'FEATURE_VERSION':"${project.version}".toString()
 ]
 

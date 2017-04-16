@@ -116,7 +116,7 @@ public class FindbugsPlugin extends AbstractUIPlugin {
      * "edu.umd.cs.findbugs.plugin.eclipse", was
      * <code>"de.tobject.findbugs"</code>).
      */
-    public static final String PLUGIN_ID = "edu.umd.cs.findbugs.plugin.eclipse"; //$NON-NLS-1$
+    public static final String PLUGIN_ID = "com.github.spotbugs.plugin.eclipse"; //$NON-NLS-1$
 
     private static final String DEFAULT_CLOUD_ID = "edu.umd.cs.findbugs.cloud.doNothingCloud";
 
