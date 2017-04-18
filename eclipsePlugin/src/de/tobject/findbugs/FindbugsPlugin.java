@@ -113,8 +113,8 @@ import edu.umd.cs.findbugs.plugins.DuplicatePluginIdException;
 public class FindbugsPlugin extends AbstractUIPlugin {
     /**
      * The plug-in identifier of the FindBugs Plug-in (value
-     * "edu.umd.cs.findbugs.plugin.eclipse", was
-     * <code>"de.tobject.findbugs"</code>).
+     * "com.github.spotbugs.plugin.eclipse", was
+     * <code>"de.tobject.findbugs"</code> and {@code "edu.umd.cs.findbugs.plugin.eclipse"}).
      */
     public static final String PLUGIN_ID = "com.github.spotbugs.plugin.eclipse"; //$NON-NLS-1$
 

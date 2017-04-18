@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="edu.umd.cs.findbugs.plugin.eclipse" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="com.github.spotbugs.plugin.eclipse" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="edu.umd.cs.findbugs.plugin.eclipse" id="findbugsQuickFixes" name="Custom SpotBugs quick fixes"/>
+         <meta.schema plugin="com.github.spotbugs.plugin.eclipse" id="findbugsQuickFixes" name="Custom SpotBugs quick fixes"/>
       </appInfo>
       <documentation>
          Extension point can be used to contribute custom quick fix resolutions for the SpotBugs plugin.
@@ -23,21 +23,21 @@
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
-                  
+
                </documentation>
             </annotation>
          </attribute>
          <attribute name="id" type="string">
             <annotation>
                <documentation>
-                  
+
                </documentation>
             </annotation>
          </attribute>
          <attribute name="name" type="string">
             <annotation>
                <documentation>
-                  
+
                </documentation>
                <appInfo>
                   <meta.attribute translatable="true"/>
@@ -52,7 +52,7 @@
          <attribute name="class" type="string">
             <annotation>
                <documentation>
-                  
+
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn="edu.umd.cs.findbugs.plugin.eclipse.quickfix.BugResolution:"/>
