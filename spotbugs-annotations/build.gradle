@@ -1,6 +1,7 @@
 apply from: "$rootDir/gradle/checkstyle.gradle"
 apply from: "$rootDir/gradle/javadoc.gradle"
 apply from: "$rootDir/gradle/maven.gradle"
+apply plugin: 'osgi'
 
 dependencies {
   compile 'com.google.code.findbugs:jsr305:3.0.1'
@@ -8,11 +9,10 @@ dependencies {
 
 jar {
   manifest {
-    attributes 'Bundle-Name': 'SpotbugsInternalAnnotations',
-               'Bundle-SymbolicName': 'spotbugsInternalAnnotations',
-               'Bundle-Version': project.version,
-               'Export-Package': 'edu.umd.cs.findbugs.annotations',
-               'Bundle-RequiredExecutionEnvironment': 'J2SE-1.5'
+    name 'spotbugs-annotations'
+    symbolicName 'spotbugs-annotations'
+    version project.version.replace('-', '.')
+    instruction 'Bundle-RequiredExecutionEnvironment', 'JavaSE-1.8'
   }
 }
 
@@ -45,5 +45,31 @@ uploadArchives {
         description 'Annotations the SpotBugs tool supports'
       }
     }
+  }
+}
+
+def manifestForEclipsePrpject = file("META-INF/MANIFEST.MF")
+task generateManifest {
+  doLast {
+    jar.manifest.writeTo(manifestForEclipsePrpject)
+  }
+}
+tasks.eclipse.dependsOn generateManifest
+
+task deleteManifest {
+  doLast {
+    project.delete manifestForEclipsePrpject
+  }
+}
+tasks.cleanEclipse.dependsOn deleteManifest
+
+eclipse {
+  project {
+    natures 'org.eclipse.jdt.core.javanature'
+    natures 'org.eclipse.pde.PluginNature'
+
+    buildCommand 'org.eclipse.jdt.core.javabuilder'
+    buildCommand 'org.eclipse.pde.ManifestBuilder'
+    buildCommand 'org.eclipse.pde.SchemaBuilder'
   }
 }
