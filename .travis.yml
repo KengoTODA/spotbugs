@@ -66,7 +66,6 @@ deploy:
     github_token: $GITHUB_TOKEN
     local_dir: $TRAVIS_BUILD_DIR/eclipsePlugin/build/site/eclipse-daily
     repo: spotbugs/eclipse-latest
-    target_branch: gh-pages
-    all_branches: true
     on:
       condition: "$JDK_FOR_TEST = oraclejdk8"
+      all_branches: true
