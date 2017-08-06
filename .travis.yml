@@ -51,9 +51,9 @@ cache:
     - deps/
 
 deploy:
-  provider: script
-  skip_cleanup: true
-  script: ./gradlew uploadArchives -PossrhUsername="$SONATYPE_USERNAME" -PossrhPassword="$SONATYPE_PASSWORD"
-  on:
-    branch: master
-    condition: "$JDK_FOR_TEST = oraclejdk8"
+  - provider: script
+    skip_cleanup: true
+    script: ./gradlew uploadArchives -PossrhUsername="$SONATYPE_USERNAME" -PossrhPassword="$SONATYPE_PASSWORD"
+    on:
+      branch: master
+      condition: "$JDK_FOR_TEST = oraclejdk8"
