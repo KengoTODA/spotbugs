@@ -312,6 +312,6 @@ def generate_bug_description(language):
                 bug_description_page.write('\n')
 
 def setup(app):
+    print(app.config)
     app.add_stylesheet('custom.css')
-
-generate_bug_description(language)
+    generate_bug_description(language)
