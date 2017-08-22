@@ -278,6 +278,7 @@ def generate_pattern_title(bug_pattern, message):
     return "%s: %s (%s)" % (bug_pattern.get('abbrev'), message.findtext('.//ShortDescription'), bug_pattern.get('type'))
 
 def generate_bug_description(language):
+    print("Generating bug description page for %s..." % language)
     findbugs = parse('../spotbugs/etc/findbugs.xml')
     if language == 'ja':
         messages = parse('../spotbugs/etc/messages_ja.xml')
