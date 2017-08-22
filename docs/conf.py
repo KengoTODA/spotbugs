@@ -313,4 +313,4 @@ def generate_bug_description(language):
 
 def setup(app):
     app.add_stylesheet('custom.css')
-    generate_bug_description(language)
+    generate_bug_description(app.config.language)
