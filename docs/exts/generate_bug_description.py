@@ -44,4 +44,4 @@ def generate_bug_description(language):
                 bug_description_page.write('\n')
 
 def setup(app):
-    generate_bug_description(app.config.language)
+    app.connect('builder-inited', lambda app: generate_bug_description(app.config.language))
