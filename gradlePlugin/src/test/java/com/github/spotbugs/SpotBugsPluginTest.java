@@ -4,6 +4,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -15,8 +18,6 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-
-import com.google.common.io.Files;
 
 public class SpotBugsPluginTest extends Assert{
   @Rule
@@ -36,10 +37,10 @@ public class SpotBugsPluginTest extends Assert{
     File sourceDir = folder.newFolder("src", "main", "java");
     File to = new File(sourceDir, "foo.java");
     File from = new File("src/test/java/com/github/spotbugs/Foo.java");
-    Files.copy(from, to);
+    Files.copy(from.toPath(), to.toPath(), StandardCopyOption.COPY_ATTRIBUTES);
     
     File buildFile = folder.newFile("build.gradle");
-    Files.write(buildScript.getBytes(), buildFile);
+    Files.write(buildFile.toPath(), buildScript.getBytes(), StandardOpenOption.WRITE);
     
     
     BuildResult result = GradleRunner.create().withProjectDir(folder.getRoot()).withArguments(Arrays.asList("tasks", "--all")).withPluginClasspath().build();
@@ -60,13 +61,13 @@ public class SpotBugsPluginTest extends Assert{
         "}";
     File root = folder.newFolder();
     File buildFile = new File(root, "build.gradle");
-    Files.write(buildScript.getBytes(), buildFile);
+    Files.write(buildFile.toPath(), buildScript.getBytes(), StandardOpenOption.CREATE_NEW);
 
     File sourceDir = new File(root, "src/main/java");
     assertTrue(sourceDir.mkdirs());
     File to = new File(sourceDir, "Foo.java");
     File from = new File("src/test/java/com/github/spotbugs/Foo.java");
-    Files.copy(from, to);
+    Files.copy(from.toPath(), to.toPath(), StandardCopyOption.COPY_ATTRIBUTES);
 
     BuildResult result = GradleRunner.create()
             .withProjectDir(root)
