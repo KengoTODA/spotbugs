@@ -17,13 +17,24 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.experimental.theories.DataPoints;
+import org.junit.experimental.theories.Theories;
+import org.junit.experimental.theories.Theory;
 import org.junit.rules.TemporaryFolder;
+import org.junit.runner.RunWith;
 
 import com.google.common.io.Files;
 
+@RunWith(Theories.class)
 public class SpotBugsPluginTest extends Assert{
   @Rule
   public TemporaryFolder folder= new TemporaryFolder();
+
+  /**
+   * Supported gradle versions
+   */
+  @DataPoints
+  public static String[] gradleVersions = new String[] { "4.0", "4.1" };
 
   @Before
   public void createProject() throws IOException {
@@ -52,9 +63,10 @@ public class SpotBugsPluginTest extends Assert{
     assertTrue(result.getOutput().contains("spotbugsTest"));
   }
 
-  @Test
-  public void testSpotBugsTaskCanRun() throws Exception {
+  @Theory
+  public void testSpotBugsTaskCanRun(String gradleVersion) throws Exception {
     BuildResult result = GradleRunner.create()
+            .withGradleVersion(gradleVersion)
             .withProjectDir(folder.getRoot())
             .withArguments(Arrays.asList("compileJava", "spotbugsMain"))
             .withPluginClasspath().build();
@@ -63,9 +75,10 @@ public class SpotBugsPluginTest extends Assert{
     assertThat(spotbugsMain.get().getOutcome(), is(TaskOutcome.SUCCESS));
   }
 
-  @Test
-  public void testSpotBugsTestTaskCanRun() throws Exception {
+  @Theory
+  public void testSpotBugsTestTaskCanRun(String gradleVersion) throws Exception {
     BuildResult result = GradleRunner.create()
+            .withGradleVersion(gradleVersion)
             .withProjectDir(folder.getRoot())
             .withArguments(Arrays.asList("compileTestJava", "spotbugsTest"))
             .withPluginClasspath().build();
@@ -74,9 +87,10 @@ public class SpotBugsPluginTest extends Assert{
     assertThat(spotbugsTest.get().getOutcome(), is(TaskOutcome.NO_SOURCE));
   }
 
-  @Test
-  public void testCheckTaskDependsOnSpotBugsTasks() throws Exception {
+  @Theory
+  public void testCheckTaskDependsOnSpotBugsTasks(String gradleVersion) throws Exception {
     BuildResult result = GradleRunner.create()
+            .withGradleVersion(gradleVersion)
             .withProjectDir(folder.getRoot())
             .withArguments(Arrays.asList("compileJava", "compileTestJava", "check"))
             .withPluginClasspath().build();
