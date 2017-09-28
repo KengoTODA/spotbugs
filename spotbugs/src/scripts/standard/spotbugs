@@ -108,7 +108,7 @@ fi
 # Extra JVM args for MacOSX.
 if [ $fb_osname = "Darwin" ]; then
 	fb_jvmargs="$fb_jvmargs \
-		-Xdock:name=FindBugs -Xdock:icon=${spotbugs_home}/lib/buggy.icns \
+		-Xdock:name=SpotBugs -Xdock:icon=${spotbugs_home}/lib/buggy.icns \
 		-Dapple.laf.useScreenMenuBar=true"
 fi
 

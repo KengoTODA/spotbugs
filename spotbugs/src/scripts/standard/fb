@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# Launch FindBugs from the command line.
+# Launch SpotBugs from the command line.
 
 @DEFINE_ESCAPE_ARG@
 
@@ -101,7 +101,7 @@ fi
 # Extra JVM args for MacOSX.
 if [ $fb_osname = "Darwin" ]; then
 	fb_jvmargs="$fb_jvmargs \
-		-Xdock:name=FindBugs -Xdock:icon=${spotbugs_home}/lib/buggy.icns \
+		-Xdock:name=SpotBugs -Xdock:icon=${spotbugs_home}/lib/buggy.icns \
 		-Dapple.laf.useScreenMenuBar=true"
 fi
 

@@ -205,13 +205,13 @@ set args=%args% "%firstArg%"
 goto shift1
 
 :: ----------------------------------------------------------------------
-:: Launch FindBugs
+:: Launch SpotBugs
 :: ----------------------------------------------------------------------
 :launch
 :: Make sure SPOTBUGS_HOME is set.
 :: If it isn't, try using the default value based on the
 :: directory path of the invoked script.
-:: Note that this will fail miserably if the value of FINDBUGS_HOME
+:: Note that this will fail miserably if the value of SPOTBUGS_HOME
 :: has quote characters in it.
 if not "%SPOTBUGS_HOME%"=="" goto checkHomeValid
 set SPOTBUGS_HOME=%default_spotbugs_home%
@@ -220,7 +220,7 @@ set SPOTBUGS_HOME=%default_spotbugs_home%
 if not exist "%SPOTBUGS_HOME%\lib\%appjar%" goto homeNotSet
 
 :found_home
-:: Launch FindBugs!
+:: Launch SpotBugs!
 if "%fb_mainclass%"=="" goto runJar
 "%javahome%%launcher%" %debugArg% %conserveSpaceArg% %workHardArg% %javaProps% "-Dspotbugs.home=%SPOTBUGS_HOME%" -Xmx%maxheap%m %jvmargs% "-Dfindbugs.launchUI=%launchUI%" -cp "%SPOTBUGS_HOME%\lib\%appjar%" %fb_mainclass% %args%
 goto end
@@ -233,7 +233,7 @@ goto end
 :: ----------------------------------------------------------------------
 :homeNotSet
 echo Could not find SpotBugs home directory.  There may be a problem
-echo with the FindBugs installation.  Try setting SPOTBUGS_HOME, or
+echo with the SpotBugs installation.  Try setting SPOTBUGS_HOME, or
 echo re-installing.
 goto end
 
