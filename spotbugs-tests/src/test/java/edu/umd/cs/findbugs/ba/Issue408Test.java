@@ -8,6 +8,7 @@ import static org.junit.Assume.assumeThat;
 import org.junit.Test;
 
 import edu.umd.cs.findbugs.AbstractIntegrationTest;
+import edu.umd.cs.findbugs.NoClassesFoundToAnalyzeException;
 
 /**
  * @see <a href="https://github.com/spotbugs/spotbugs/issues/408">#408</a>
@@ -15,7 +16,7 @@ import edu.umd.cs.findbugs.AbstractIntegrationTest;
  */
 public class Issue408Test extends AbstractIntegrationTest {
 
-    @Test
+    @Test(expected = NoClassesFoundToAnalyzeException.class)
     public void test() {
         assumeThat(System.getProperty("java.specification.version"), is("9"));
 
